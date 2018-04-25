@@ -8,48 +8,41 @@ namespace RDPLib
     public class RDP
     {
         //private Form1 rdpForm;
-
+        volatile string status = "first init";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         //[STAThread]
         public string RDPConnect()
         {
-            string status = "first init";
             Thread thread = new Thread(
                 () =>
                 {
-                    
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Form1 rdpForm = new Form1();
-                    Application.Run(rdpForm);
-
-                    status = rdpForm.Connect("192.168.56.2");
-
+                    //rdpForm.Visible = false;
+                    rdpForm.Load += RdpForm_Load;
+                    status = rdpForm.Connect("10.0.109.127");
+                    //Application.Run(rdpForm);
+                    rdpForm.Visible = false;
                     Console.WriteLine(status);
-                    //Application.Exit();
-                    if (rdpForm.InvokeRequired)
-                    {
-                        rdpForm.BeginInvoke(new MethodInvoker(() => rdpForm.Close()));
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        rdpForm.Close();
-                        Application.Exit();
-                    }
+                    ////Application.Exit();
+                    //if (rdpForm.InvokeRequired)
+                    //    rdpForm.BeginInvoke(new MethodInvoker(() => rdpForm.Close()));
+                    //else
+                    //    rdpForm.Close();
 
-                    rdpForm.Exit();
-                    rdpForm.Close();
                 }
                 );
-            thread.IsBackground = true;
+            //thread.IsBackground = true;
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
-            thread.Join();
-            
-            Console.WriteLine(thread.ThreadState);
+
+            Thread.Sleep(3000);
+
+            thread.Abort();
+            //Console.WriteLine(thread.ThreadState);
             return status;
 
             //Application.EnableVisualStyles();
@@ -60,6 +53,13 @@ namespace RDPLib
             //Application.Run(rdpForm);
 
 
+        }
+
+        private void RdpForm_Load(object sender, EventArgs e)
+        {
+            var form = (Form)sender;
+            form.ShowInTaskbar = false;
+            form.Opacity = 0;
         }
     }
 }

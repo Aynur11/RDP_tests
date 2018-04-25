@@ -12,9 +12,6 @@ namespace RDP_tests
         [STAThread]
         public void RDPConnectionTest()
         {
-            //Thread rdpThread = new Thread(RDPLib.RDP.RDPConnect());
-            //RDPLib.RDP.RDPConnect();
-
             RDPLib.RDP rdp = new RDP();
             Assert.AreEqual("1", rdp.RDPConnect());
         }

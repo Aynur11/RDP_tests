@@ -15,62 +15,35 @@ namespace RDPLib
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                rdp.Server = txtServer.Text;
-                rdp.UserName = txtUserName.Text;
-                rdp.AdvancedSettings8.EnableCredSspSupport = true;
-                IMsTscNonScriptable secured = (IMsTscNonScriptable)rdp.GetOcx();
-                secured.ClearTextPassword = txtPassword.Text;
-                rdp.Connect();
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show("Error Connecting", "Error connecting to remote desktop " + txtServer.Text + " Error:  " + Ex.Message,MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        
         public string Connect(string IP)
         {
+            string status = "first init";
             try
             {
                 rdp.Server = IP;
-                rdp.UserName = "Test";
+                rdp.UserName = "Tester";
                 rdp.AdvancedSettings8.EnableCredSspSupport = true;
                 IMsTscNonScriptable secured = (IMsTscNonScriptable)rdp.GetOcx();
                 secured.ClearTextPassword = "111111";
                 rdp.Connect();
-                Exit();
-                return (rdp.Connected.ToString());
+                
+                status = rdp.Connected.ToString();
+                //if (rdp.Connected.ToString() == "1")
+                //    rdp.Disconnect();
+                return (status);
             }
             catch (Exception Ex)
             {
-                Console.WriteLine("Error Connecting", "Error connecting to remote desktop " + txtServer.Text + " Error:  " + Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Error Connecting, Error connecting to remote desktop {1}", Ex.Message);
                 //MessageBox.Show("Error Connecting", "Error connecting to remote desktop " + txtServer.Text + " Error:  " + Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return "-1";
             }
-        }
-
-        public void Exit()
-        {
-            
-            this.Close();
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Check if connected before disconnecting
-                if (rdp.Connected.ToString() == "1")
-                    rdp.Disconnect();
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show("Error Disconnecting", "Error disconnecting from remote desktop " + txtServer.Text + " Error:  " + Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //finally
+            //{
+            //    if (rdp.Connected.ToString() == "1")
+            //        rdp.Disconnect();
+            //}
         }
     }
 }
