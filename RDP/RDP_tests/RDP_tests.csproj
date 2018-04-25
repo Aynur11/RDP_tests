@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{396E5916-0A1E-42C5-85B5-DD08E6DF9B62}</ProjectGuid>
+    <ProjectGuid>{78DBC841-C0BB-4EA9-80E7-D1654A9616FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RDP_tests</RootNamespace>
@@ -27,7 +27,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,16 +57,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="RDPTests.cs" />
+    <Compile Include="RDPConnectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SampleRDC\RDPLib.csproj">
+    <ProjectReference Include="..\SampleRDC\SampleRDC.csproj">
       <Project>{e4c84928-8787-433e-ab30-ca544fadacbc}</Project>
-      <Name>RDPLib</Name>
+      <Name>SampleRDC</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

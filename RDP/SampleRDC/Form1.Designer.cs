@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace RDPLib
 {
     partial class Form1
@@ -38,6 +40,11 @@ namespace RDPLib
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             //this.rdp = new AxMSTSCLib.AxMsTscAxNotSafeForScripting();
+
+            //Thread thread = new Thread(AxMSTSCLib.AxMsRdpClient8NotSafeForScripting());
+            //thread.SetApartmentState(ApartmentState.STA);
+            //thread.Start();
+
             this.rdp = new AxMSTSCLib.AxMsRdpClient8NotSafeForScripting();
 
             ((System.ComponentModel.ISupportInitialize)(this.rdp)).BeginInit();
