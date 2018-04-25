@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using MSTSCLib;
 
-namespace SampleRDC
+namespace RDPLib
 {
     public partial class Form1 : Form
     {
@@ -38,7 +38,7 @@ namespace SampleRDC
             try
             {
                 rdp.Server = IP;
-                rdp.UserName = "Test";
+                rdp.UserName = "Tester";
                 rdp.AdvancedSettings8.EnableCredSspSupport = true;
                 IMsTscNonScriptable secured = (IMsTscNonScriptable)rdp.GetOcx();
                 secured.ClearTextPassword = "111111";

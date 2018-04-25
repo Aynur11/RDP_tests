@@ -1,4 +1,4 @@
-namespace SampleRDC
+namespace RDPLib
 {
     partial class Form1
     {
