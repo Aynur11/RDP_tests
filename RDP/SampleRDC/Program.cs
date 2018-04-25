@@ -19,26 +19,36 @@ namespace RDPLib
             Thread thread = new Thread(
                 () =>
                 {
+                    
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Form1 rdpForm = new Form1();
                     Application.Run(rdpForm);
 
                     status = rdpForm.Connect("192.168.56.2");
-                    
+
                     Console.WriteLine(status);
                     //Application.Exit();
                     if (rdpForm.InvokeRequired)
+                    {
                         rdpForm.BeginInvoke(new MethodInvoker(() => rdpForm.Close()));
+                        Application.Exit();
+                    }
                     else
+                    {
                         rdpForm.Close();
+                        Application.Exit();
+                    }
 
+                    rdpForm.Exit();
+                    rdpForm.Close();
                 }
                 );
             thread.IsBackground = true;
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             thread.Join();
+            
             Console.WriteLine(thread.ThreadState);
             return status;
 

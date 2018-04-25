@@ -43,7 +43,7 @@ namespace RDPLib
                 IMsTscNonScriptable secured = (IMsTscNonScriptable)rdp.GetOcx();
                 secured.ClearTextPassword = "111111";
                 rdp.Connect();
-                this.Close();
+                Exit();
                 return (rdp.Connected.ToString());
             }
             catch (Exception Ex)
@@ -56,6 +56,7 @@ namespace RDPLib
 
         public void Exit()
         {
+            
             this.Close();
         }
         private void button2_Click(object sender, EventArgs e)
