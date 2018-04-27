@@ -1,4 +1,6 @@
+using System;
 using System.Threading;
+using AxMSTSCLib;
 
 namespace RDPLib
 {
@@ -43,7 +45,7 @@ namespace RDPLib
             this.rdp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("rdp.OcxState")));
             this.rdp.Size = new System.Drawing.Size(354, 214);
             this.rdp.TabIndex = 0;
-            this.rdp.OnConnected += new System.EventHandler(this.rdp_ShowStatus);
+            this.rdp.OnConnected += new System.EventHandler(this.rdp_ConnectedStatus);
             // 
             // Form1
             // 
@@ -60,9 +62,11 @@ namespace RDPLib
             this.ResumeLayout(false);
 
         }
+      
+
 
         #endregion
-        
+
         private AxMSTSCLib.AxMsRdpClient8NotSafeForScripting rdp;
     }
 }

@@ -11,18 +11,26 @@ namespace RDPLib
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Конструктор дополнительно инициализирует объект для работы с RDP
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
         public Form1(string IP, string userName, string password)
         {
             InitializeComponent();
+
             rdp.Server = IP;
             rdp.UserName = userName;
             IMsTscNonScriptable secured = (IMsTscNonScriptable)rdp.GetOcx();
             secured.ClearTextPassword = password;
             rdp.AdvancedSettings8.EnableCredSspSupport = true;
+
             this.Opacity = 0;
             this.ShowInTaskbar = false;
         }
-
+        
         public string GetStatus
         {
             get
@@ -31,7 +39,7 @@ namespace RDPLib
             }
         }
 
-        public void Connect(string IP)
+        public void Connect()
         {
             try
             {
@@ -47,7 +55,7 @@ namespace RDPLib
             catch (Exception Ex)
             {
                 Console.WriteLine("Error Connecting, Error connecting to remote desktop {0}", Ex.Message);
-                MessageBox.Show(" Error:  " + Ex.Message);
+                //MessageBox.Show(" Error:  " + Ex.Message);
             }
             //finally
             //{
@@ -58,14 +66,17 @@ namespace RDPLib
         
         private void rdp_Connect(object sender, EventArgs e)
         {
-            Connect("10.0.109.127");
+            Connect();
             //MessageBox.Show("Connecting...current status is " + GetStatus);
         }
 
-        private void rdp_ShowStatus(object sender, EventArgs e)
+        private void rdp_ConnectedStatus(object sender, EventArgs e)
         {
             //MessageBox.Show("Connected. Current status is " + GetStatus);
             RDP.Status = GetStatus;
+            this.Close();
         }
+        
+
     }
 }

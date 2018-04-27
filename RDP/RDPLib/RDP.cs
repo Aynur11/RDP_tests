@@ -20,7 +20,7 @@ namespace RDPLib
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Form1 rdpForm = new Form1(IP, userName, password);
-
+                    //rdpForm.Close();
                     //rdpForm.Load += RdpForm_Load;
                     Application.Run(rdpForm);
         }

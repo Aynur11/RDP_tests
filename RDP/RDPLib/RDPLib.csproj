@@ -9,8 +9,8 @@
     <ProjectGuid>{E4C84928-8787-433E-AB30-CA544FADACBC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleRDC</RootNamespace>
-    <AssemblyName>SampleRDC</AssemblyName>
+    <RootNamespace>RDPLib</RootNamespace>
+    <AssemblyName>RDPLib</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
