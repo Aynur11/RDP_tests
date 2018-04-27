@@ -8,7 +8,7 @@ namespace RDPLib
     public class RDP
     {
         //private Form1 rdpForm;
-        volatile string status = "first init";
+        volatile string status = "empty init";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -22,10 +22,11 @@ namespace RDPLib
                     Application.SetCompatibleTextRenderingDefault(false);
                     Form1 rdpForm = new Form1();
                     //rdpForm.Visible = false;
-                    rdpForm.Load += RdpForm_Load;
+                    //rdpForm.Load += RdpForm_Load;
                     status = rdpForm.Connect("10.0.109.127");
+
                     //Application.Run(rdpForm);
-                    rdpForm.Visible = false;
+
                     Console.WriteLine(status);
                     ////Application.Exit();
                     //if (rdpForm.InvokeRequired)
@@ -38,10 +39,11 @@ namespace RDPLib
             //thread.IsBackground = true;
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+            thread.Join();
 
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
 
-            thread.Abort();
+            //thread.Abort();
             //Console.WriteLine(thread.ThreadState);
             return status;
 

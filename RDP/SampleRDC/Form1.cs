@@ -15,7 +15,7 @@ namespace RDPLib
         {
             InitializeComponent();
         }
-        
+
         public string Connect(string IP)
         {
             string status = "first init";
@@ -23,11 +23,17 @@ namespace RDPLib
             {
                 rdp.Server = IP;
                 rdp.UserName = "Tester";
-                rdp.AdvancedSettings8.EnableCredSspSupport = true;
+                //rdp.AdvancedSettings8.EnableCredSspSupport = true;
                 IMsTscNonScriptable secured = (IMsTscNonScriptable)rdp.GetOcx();
                 secured.ClearTextPassword = "111111";
                 rdp.Connect();
-                
+                if (rdp.Connected.ToString() != "0")
+                    while(rdp.Connected.ToString() != "1")
+                    {
+                        Console.WriteLine(rdp.ConnectingText);
+                    }
+                //System.Threading.Thread.Sleep(3000);
+
                 status = rdp.Connected.ToString();
                 //if (rdp.Connected.ToString() == "1")
                 //    rdp.Disconnect();
@@ -39,11 +45,6 @@ namespace RDPLib
                 //MessageBox.Show("Error Connecting", "Error connecting to remote desktop " + txtServer.Text + " Error:  " + Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return "-1";
             }
-            //finally
-            //{
-            //    if (rdp.Connected.ToString() == "1")
-            //        rdp.Disconnect();
-            //}
         }
     }
 }
