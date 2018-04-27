@@ -64,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SampleRDC\SampleRDC.csproj">
+    <ProjectReference Include="..\RDPLib\RDPLib.csproj">
       <Project>{e4c84928-8787-433e-ab30-ca544fadacbc}</Project>
-      <Name>SampleRDC</Name>
+      <Name>RDPLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
