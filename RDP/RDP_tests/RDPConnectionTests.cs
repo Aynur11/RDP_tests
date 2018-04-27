@@ -8,12 +8,12 @@ namespace RDP_tests
     [TestFixture]
     public class RDPConnectionTests
     {
-        [Test, TestCaseSource("testdata")]
+        [Test]
         [STAThread]
-        public void RDPConnectionTest(string IP)
+        public void RDPConnectionTest()
         {
-            //string IP = "10.0.109.127";
-            string userName = "Tester";
+            string IP = TestContext.Parameters["IP"];
+            string userName = TestContext.Parameters["UserName"];
             string password = "111111";
 
 
